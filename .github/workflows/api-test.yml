@@ -25,5 +25,5 @@ jobs:
     - name: Run Postman Collection
       run: |
         newman run AI_Product_API_Testing.postman_collection.json \
-          --env-var "baseUrl=http://localhost:8091" \
+          --env-var "baseUrl=https://api-with-bugs.practicesoftwaretesting.com" \
           --reporters cli
