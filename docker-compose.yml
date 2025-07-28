@@ -49,7 +49,7 @@ services:
       dockerfile: Dockerfile
     working_dir: /var/www
     container_name: cron
-    restart: always
+    # restart: always
     command: crond -f -l 8
     volumes_from:
       - laravel-api

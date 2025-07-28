@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "e15e43fa-3b45-42ec-80d0-5d43291e2ce8",
+		"name": "AI Product API Testing",
+		"description": "Collection for testing GET /products/{productId} endpoint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28981845"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "TC2_InvalidNumericID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Error message is correct\", function () {",
+									"    const json = pm.response.json();",
+									"    pm.expect(json.message).to.eql(\"Requested item not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/9999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TC3_AlphabeticalID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 404\", function () {",
+									"    pm.expect([400, 404]).to.include(pm.response.code);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TC1_ValidProductID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response contains required product fields\", function () {",
+									"    const json = pm.response.json();",
+									"    pm.expect(json).to.have.property(\"id\");",
+									"    pm.expect(json).to.have.property(\"name\");",
+									"    pm.expect(json).to.have.property(\"brand\");",
+									"    pm.expect(json.brand).to.have.property(\"name\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8091"
+		}
+	]
+}
