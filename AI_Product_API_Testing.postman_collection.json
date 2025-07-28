@@ -25,7 +25,8 @@
 									"    pm.expect(json.message).to.eql(\"Requested item not found\");",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -56,7 +57,8 @@
 									"    pm.expect([400, 404]).to.include(pm.response.code);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -94,7 +96,8 @@
 									"    pm.expect(json.brand).to.have.property(\"name\");",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -120,7 +123,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:8091"
+			"value": "https://api-with-bugs.practicesoftwaretesting.com"
 		}
 	]
 }
